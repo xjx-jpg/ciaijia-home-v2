@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero 配色方案</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'PingFang SC','Microsoft YaHei',sans-serif; background:#0f172a; padding:0 0 60px; }
+h2 { text-align:center; padding:26px 0 8px; color:#fff; font-size:1rem; }
+.rec { display:inline-block; background:#F59E0B; color:#111; font-size:.6rem; padding:2px 7px; border-radius:8px; margin-left:6px; vertical-align:middle; }
+
+/* ── 卡片包裹 ── */
+.card {
+  max-width:920px; margin:20px auto; border-radius:18px; overflow:hidden;
+  display:flex; align-items:center; gap:0;
+}
+.txt { flex:1; padding:44px 40px; color:#fff; }
+.tag { display:inline-block; padding:5px 15px; border-radius:20px; font-size:.74rem; font-weight:600; margin-bottom:14px; }
+.txt h1 { font-size:1.8rem; font-weight:800; line-height:1.25; margin-bottom:10px; }
+.txt h1 span { color:#FCD34D; }
+.txt p { font-size:.88rem; opacity:.85; margin-bottom:5px; }
+.cta { display:inline-block; padding:11px 24px; border-radius:30px; font-size:.88rem; font-weight:700; margin-top:16px; text-decoration:none; }
+.img-box { flex:0 0 290px; padding:24px 24px 24px 0; }
+.img-box img { width:100%; border-radius:14px; box-shadow:0 8px 28px rgba(0,0,0,.3); }
+
+/* ═══ 方案A：深灰蓝（接近原风格但更暗） ═══ */
+.card.a { background:linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%); }
+.card.a .tag { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); }
+.card.a .cta { background:#fff; color:#1e293b; }
+
+/* ═══ 方案B：暖深色（匹配照片的暖调） ═══ */
+.card.b { background:linear-gradient(135deg, #292524 0%, #44403c 40%, #57534e 100%); }
+.card.b .tag { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); }
+.card.b .cta { background:#FCD34D; color:#292524; }
+.card.b h1 span { color:#FBBF24; }
+
+/* ═══ 方案C：深蓝紫（现代科技感） ═══ */
+.card.c { background:linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #3730a3 100%); }
+.card.c .tag { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); }
+.card.c .cta { background:#fff; color:#312e81; }
+
+/* ═══ 方案D：深青灰（专业、干净） ═══ */
+.card.d { background:linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); }
+.card.d .tag { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); }
+.card.d .cta { background:#38BDF8; color:#0f172a; }
+.card.d h1 span { color:#38BDF8; }
+
+/* ═══ 方案E：墨绿（康养感） ═══ */
+.card.e { background:linear-gradient(135deg, #064e3b 0%, #065f46 40%, #047857 100%); }
+.card.e .tag { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); }
+.card.e .cta { background:#fff; color:#064e3b; }
+.card.e h1 span { color:#A7F3D0; }
+
+/* ═══ 方案F：渐变灰+蓝点缀 ═══ */
+.card.f { background:linear-gradient(135deg, #27272a 0%, #3f3f46 35%, #1e40af 100%); }
+.card.f .tag { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); }
+.card.f .cta { background:#fff; color:#1e40af; }
+
+</style>
+</head>
+<body>
+
+<h2>🎨 配色 A — 深灰蓝（稳健商务感）</h2>
+<div class="card a">
+  <div class="txt">
+    <div class="tag">🏠 康养体验中心-线上智慧平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%</p>
+    <p>近半数与家居环境隐患相关</p>
+    <a href="#" class="cta">🔍 开始自查 →</a>
+  </div>
+  <div class="img-box"><img src="D:/W020260305394898372624.jpg"></div>
+</div>
+
+<h2>🎨 配色 B — 暖棕深色（匹配照片暖调）<span class="rec">推荐</span></h2>
+<div class="card b">
+  <div class="txt">
+    <div class="tag">🏠 康养体验中心-线上智慧平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%</p>
+    <p>近半数与家居环境隐患相关</p>
+    <a href="#" class="cta">🔍 开始自查 →</a>
+  </div>
+  <div class="img-box"><img src="D:/W020260305394898372624.jpg"></div>
+</div>
+
+<h2>🎨 配色 C — 深蓝紫（科技智慧感）</h2>
+<div class="card c">
+  <div class="txt">
+    <div class="tag">🏠 康养体验中心-线上智慧平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%</p>
+    <p>近半数与家居环境隐患相关</p>
+    <a href="#" class="cta">🔍 开始自查 →</a>
+  </div>
+  <div class="img-box"><img src="D:/W020260305394898372624.jpg"></div>
+</div>
+
+<h2>🎨 配色 D — 深青灰（清净专业感）</h2>
+<div class="card d">
+  <div class="txt">
+    <div class="tag">🏠 康养体验中心-线上智慧平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%</p>
+    <p>近半数与家居环境隐患相关</p>
+    <a href="#" class="cta">🔍 开始自查 →</a>
+  </div>
+  <div class="img-box"><img src="D:/W020260305394898372624.jpg"></div>
+</div>
+
+<h2>🎨 配色 E — 墨绿（康养健康感）</h2>
+<div class="card e">
+  <div class="txt">
+    <div class="tag">🏠 康养体验中心-线上智慧平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%</p>
+    <p>近半数与家居环境隐患相关</p>
+    <a href="#" class="cta">🔍 开始自查 →</a>
+  </div>
+  <div class="img-box"><img src="D:/W020260305394898372624.jpg"></div>
+</div>
+
+<h2>🎨 配色 F — 渐变灰蓝（过渡最自然）</h2>
+<div class="card f">
+  <div class="txt">
+    <div class="tag">🏠 康养体验中心-线上智慧平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%</p>
+    <p>近半数与家居环境隐患相关</p>
+    <a href="#" class="cta">🔍 开始自查 →</a>
+  </div>
+  <div class="img-box"><img src="D:/W020260305394898372624.jpg"></div>
+</div>
+
+</body>
+</html>

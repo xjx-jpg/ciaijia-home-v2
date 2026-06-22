@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蓝色+白色 Hero v4</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'PingFang SC','Microsoft YaHei',sans-serif; background:#0f172a; padding:0 0 60px; }
+h2 { text-align:center; padding:26px 0 8px; color:#fff; font-size:1rem; }
+
+/* ═══ 方案1：大面积白卡片 + 蓝背景 ═══ */
+.v1 { max-width:920px; margin:20px auto; background:linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #3B82F6 100%); border-radius:20px; padding:48px 40px; display:flex; align-items:center; gap:40px; }
+.v1 .card-white { flex:1; background:#fff; border-radius:16px; padding:36px 32px; box-shadow: 0 4px 24px rgba(0,0,0,.12); }
+.v1 .card-white .tag { display:inline-block; background:linear-gradient(135deg,#1e3a8a,#2563eb); color:#fff; padding:5px 15px; border-radius:20px; font-size:.74rem; font-weight:600; margin-bottom:14px; }
+.v1 .card-white h1 { color:#111827; font-size:1.8rem; font-weight:800; line-height:1.25; margin-bottom:10px; }
+.v1 .card-white h1 span { color:#2563EB; }
+.v1 .card-white p { color:#6B7280; font-size:.88rem; margin-bottom:4px; }
+.v1 .card-white .cta { display:inline-block; background:linear-gradient(135deg,#1e3a8a,#2563eb); color:#fff; padding:12px 26px; border-radius:30px; font-size:.88rem; font-weight:700; margin-top:16px; text-decoration:none; }
+.v1 .img-box { flex:0 0 290px; }
+.v1 .img-box img { width:100%; border-radius:14px; box-shadow:0 8px 30px rgba(0,0,0,.2); border:4px solid #fff; }
+
+/* ═══ 方案2：毛玻璃文字区 ═══ */
+.v2 { max-width:920px; margin:20px auto; background:linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 40%, #3B82F6 100%); border-radius:20px; padding:48px 40px; display:flex; align-items:center; gap:40px; position:relative; overflow:hidden; }
+.v2::before { content:''; position:absolute; top:-60px; right:-60px; width:220px; height:220px; background:rgba(255,255,255,.06); border-radius:50%; }
+.v2::after { content:''; position:absolute; bottom:-40px; left:20%; width:160px; height:160px; background:rgba(255,255,255,.04); border-radius:50%; }
+.v2 .txt { flex:1; position:relative; z-index:1; background:rgba(255,255,255,.12); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.25); border-radius:16px; padding:36px 32px; }
+.v2 .tag { display:inline-block; background:rgba(255,255,255,.2); color:#fff; padding:5px 15px; border-radius:20px; font-size:.74rem; font-weight:600; margin-bottom:14px; }
+.v2 h1 { color:#fff; font-size:1.8rem; font-weight:800; line-height:1.25; margin-bottom:10px; }
+.v2 h1 span { color:#FCD34D; }
+.v2 p { color:rgba(255,255,255,.85); font-size:.88rem; margin-bottom:4px; }
+.v2 .cta { display:inline-block; background:#fff; color:#1e3a8a; padding:12px 26px; border-radius:30px; font-size:.88rem; font-weight:700; margin-top:16px; text-decoration:none; }
+.v2 .img-box { flex:0 0 290px; position:relative; z-index:1; }
+.v2 .img-box img { width:100%; border-radius:14px; box-shadow:0 8px 30px rgba(0,0,0,.25); border:4px solid #fff; }
+
+/* ═══ 方案3：上下分区 ═══ */
+.v3 { max-width:920px; margin:20px auto; border-radius:20px; overflow:hidden; }
+.v3-top { background:linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #3B82F6 100%); padding:40px 40px 80px; text-align:center; }
+.v3-top .tag { display:inline-block; background:rgba(255,255,255,.18); color:#fff; padding:5px 15px; border-radius:20px; font-size:.74rem; font-weight:600; margin-bottom:14px; }
+.v3-top h1 { color:#fff; font-size:1.8rem; font-weight:800; margin-bottom:10px; }
+.v3-top h1 span { color:#FCD34D; }
+.v3-top p { color:rgba(255,255,255,.85); font-size:.88rem; }
+.v3-bottom { background:#fff; padding:0 32px 32px; margin-top:-48px; }
+.v3-bottom .photo-card { display:flex; align-items:center; gap:28px; background:#F8FAFC; border-radius:16px; padding:24px; border:1px solid #E5E7EB; }
+.v3-bottom img { width:280px; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,.1); }
+.v3-bottom h3 { font-size:1rem; color:#111827; margin-bottom:4px; }
+.v3-bottom p { font-size:.8rem; color:#6B7280; line-height:1.6; }
+.v3-bottom .cta { display:inline-block; background:linear-gradient(135deg,#1e3a8a,#2563eb); color:#fff; padding:10px 22px; border-radius:30px; font-size:.84rem; font-weight:700; margin-top:12px; text-decoration:none; }
+
+/* ═══ 方案4：简洁蓝+白卡片 ═══ */
+.v4 { max-width:920px; margin:20px auto; background:linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3B82F6 100%); border-radius:20px; padding:48px 36px; display:flex; align-items:center; gap:36px; }
+.v4 .text-col { flex:1; color:#fff; }
+.v4 .tag { display:inline-block; background:rgba(255,255,255,.18); color:#fff; padding:5px 15px; border-radius:20px; font-size:.74rem; margin-bottom:14px; }
+.v4 .text-col h1 { font-size:1.8rem; font-weight:800; line-height:1.25; margin-bottom:10px; }
+.v4 .text-col h1 span { color:#FDE68A; }
+.v4 .text-col p { font-size:.88rem; opacity:.88; margin-bottom:4px; }
+.v4 .text-col .cta { display:inline-block; background:#fff; color:#1e3a8a; padding:12px 26px; border-radius:30px; font-size:.88rem; font-weight:700; margin-top:16px; text-decoration:none; }
+.v4 .photo-col { flex:0 0 300px; background:#fff; border-radius:16px; padding:14px; box-shadow:0 8px 30px rgba(0,0,0,.15); }
+.v4 .photo-col img { width:100%; border-radius:10px; display:block; }
+.v4 .photo-col .cap { font-size:.72rem; color:#9CA3AF; text-align:center; margin-top:8px; }
+.v4 .stat-row { display:flex; gap:16px; margin-top:20px; }
+.v4 .stat { background:rgba(255,255,255,.12); border-radius:10px; padding:12px 16px; text-align:center; flex:1; }
+.v4 .stat .num { font-size:1.3rem; font-weight:800; color:#FDE68A; }
+.v4 .stat .lbl { font-size:.7rem; opacity:.75; margin-top:2px; }
+
+</style>
+</head>
+<body>
+
+<h2>方案 1 — 白卡片内嵌文字 + 蓝色背景</h2>
+<div class="v1">
+  <div class="card-white">
+    <div class="tag">🏠 康养体验中心-线上智慧平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%</p>
+    <p>近半数与家居环境隐患相关</p>
+    <a href="#" class="cta">🔍 开始自查 →</a>
+  </div>
+  <div class="img-box"><img src="D:/W020260305394898372624.jpg"></div>
+</div>
+
+<h2>方案 2 — 毛玻璃透明卡片 + 蓝色背景 ⭐</h2>
+<div class="v2">
+  <div class="txt">
+    <div class="tag">🏠 康养体验中心-线上智慧平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%</p>
+    <p>近半数与家居环境隐患相关</p>
+    <a href="#" class="cta">🔍 开始自查 →</a>
+  </div>
+  <div class="img-box"><img src="D:/W020260305394898372624.jpg"></div>
+</div>
+
+<h2>方案 3 — 上蓝下白分区，照片在下方</h2>
+<div class="v3">
+  <div class="v3-top">
+    <div class="tag">🏠 康养体验中心-线上智慧平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%，近半数与家居环境隐患相关</p>
+  </div>
+  <div class="v3-bottom">
+    <div class="photo-card">
+      <img src="D:/W020260305394898372624.jpg">
+      <div>
+        <h3>🏢 慈爱嘉康养体验中心</h3>
+        <p>实景展厅，展示适老化改造全场景方案。<br>助行器、护理床、安全扶手等设备可现场体验。</p>
+        <a href="#" class="cta">🔍 开始自查 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>方案 4 — 蓝色背景 + 照片用白色边框抬高</h2>
+<div class="v4">
+  <div class="text-col">
+    <div class="tag">🏠 康养体验中心-线上智慧平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%</p>
+    <p>近半数与家居环境隐患相关</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">30%</div><div class="lbl">年跌倒率</div></div>
+      <div class="stat"><div class="num">50%</div><div class="lbl">家居相关</div></div>
+      <div class="stat"><div class="num">7类</div><div class="lbl">改造标准</div></div>
+    </div>
+    <a href="#" class="cta">🔍 开始自查 →</a>
+  </div>
+  <div class="photo-col">
+    <img src="D:/W020260305394898372624.jpg">
+    <div class="cap">📍 康养体验中心实景</div>
+  </div>
+</div>
+
+</body>
+</html>

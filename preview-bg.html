@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片处理效果预览</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'PingFang SC','Microsoft YaHei',sans-serif; background: #1a1a2e; color: #ccc; }
+h2 { text-align: center; padding: 24px 0 8px; color: #fff; font-size: 1.1rem; }
+.note { text-align: center; font-size: .82rem; color: #888; margin-bottom: 20px; }
+
+/* ── 原图展示 ── */
+.original-wrap { text-align: center; margin: 0 auto 40px; max-width: 800px; }
+.original-wrap img { max-width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.4); }
+
+/* ── Hero 背景效果模拟 ── */
+.hero-bg-demo {
+  max-width: 800px; margin: 0 auto 40px; border-radius: 16px; overflow: hidden;
+  position: relative; min-height: 420px;
+  /* 背景图 + 暗化滤镜 */
+  background:
+    linear-gradient(135deg, rgba(30,58,138,.75) 0%, rgba(29,78,216,.65) 40%, rgba(37,99,235,.55) 70%, rgba(14,165,233,.5) 100%),
+    url("D:/W020260305394898372624.jpg") center/cover no-repeat;
+}
+.hero-bg-demo .hero-content {
+  position: relative; z-index: 1; color: #fff; text-align: center;
+  padding: 80px 24px 60px;
+}
+.hero-content .tag {
+  display: inline-block;
+  background: rgba(255,255,255,.15); backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,.3);
+  padding: 5px 16px; border-radius: 30px;
+  font-size: .82rem; font-weight: 600; margin-bottom: 20px;
+}
+.hero-content h1 {
+  font-size: 2.4rem; font-weight: 800; line-height: 1.25;
+  margin-bottom: 16px; text-shadow: 0 2px 20px rgba(0,0,0,.3);
+}
+.hero-content h1 span { color: #FCD34D; }
+.hero-content .sub {
+  font-size: 1.1rem; opacity: .9; max-width: 600px; margin: 0 auto 12px;
+}
+.hero-content .sub2 { font-size: .95rem; opacity: .75; margin-bottom: 36px; }
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; color: #1D4ED8;
+  padding: 14px 28px; border-radius: 50px;
+  font-size: 1rem; font-weight: 700; text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,.25);
+}
+
+/* ── 方案对比 ── */
+.compare { display: flex; gap: 20px; max-width: 1100px; margin: 0 auto 50px; flex-wrap: wrap; justify-content: center; }
+.card {
+  flex: 1; min-width: 280px; max-width: 520px; border-radius: 14px;
+  overflow: hidden; background: #16213e; border: 1px solid #2a3a5c;
+}
+.card h3 { padding: 14px 18px 8px; color: #fff; font-size: .95rem; }
+.card .preview-box { position: relative; min-height: 260px; }
+.card .info { padding: 10px 18px 14px; font-size: .8rem; color: #aaa; line-height: 1.6; }
+.card .info code {
+  background: rgba(255,255,255,.08); padding: 2px 8px; border-radius: 4px;
+  font-size: .78rem; color: #FCD34D;
+}
+
+/* ── 方案A：深色渐变叠加 ── */
+.opt-a {
+  background:
+    linear-gradient(135deg, rgba(15,30,80,.82) 0%, rgba(20,40,100,.7) 50%, rgba(30,60,140,.55) 100%),
+    url("D:/W020260305394898372624.jpg") center/cover no-repeat;
+  color: #fff; text-align: center; padding: 50px 24px 40px;
+}
+
+/* ── 方案B：暗色+模糊 ── */
+.opt-b {
+  background:
+    linear-gradient(135deg, rgba(0,0,0,.6) 0%, rgba(10,20,50,.55) 100%),
+    url("D:/W020260305394898372624.jpg") center/cover no-repeat;
+  color: #fff; text-align: center; padding: 50px 24px 40px;
+  backdrop-filter: blur(2px);
+}
+
+/* ── 方案C：保留蓝色渐变 + 照片氛围 ── */
+.opt-c {
+  background:
+    linear-gradient(135deg, rgba(30,58,138,.7) 0%, rgba(29,78,216,.58) 40%, rgba(37,99,235,.45) 70%, rgba(14,165,233,.42) 100%),
+    url("D:/W020260305394898372624.jpg") center/cover no-repeat;
+  color: #fff; text-align: center; padding: 50px 24px 40px;
+}
+
+.tag-sm { display: inline-block; background: rgba(255,255,255,.12); padding: 3px 12px; border-radius: 20px; font-size: .72rem; margin-bottom: 12px; }
+.opt-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+.opt-sub { font-size: .85rem; opacity: .8; }
+</style>
+</head>
+<body>
+
+<h2>📷 原图</h2>
+<div class="original-wrap">
+  <img src="D:/W020260305394898372624.jpg" alt="慈爱嘉居家康养体验中心">
+</div>
+
+<h2>🎨 做成首页 Hero 背景后的效果（预览）</h2>
+<p class="note">下面模拟了在图片上加暗色滤镜后的首页效果，文字来自当前网站</p>
+<div class="hero-bg-demo">
+  <div class="hero-content">
+    <span class="tag">🏠 康养体验中心-线上平台</span>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p class="sub">我国65岁以上老年人跌倒发生率高达30%，其中近半数与家居环境隐患相关。</p>
+    <p class="sub2">点击家中每个空间，发现隐藏风险，守护长者安全。</p>
+    <a href="#" class="hero-cta">🔍 开始自查 <span>→</span></a>
+  </div>
+</div>
+
+<h2>🔧 三种滤镜方案对比</h2>
+<p class="note">同一个照片背景，三种不同的暗化程度和色调，你喜欢哪个？</p>
+
+<div class="compare">
+
+  <div class="card">
+    <h3>方案 A：深色系（正式、稳重）</h3>
+    <div class="preview-box opt-a">
+      <div class="tag-sm">🏠 康养体验中心-线上平台</div>
+      <div class="opt-title">一个跌倒，<span style="color:#FCD34D">可能改变一切</span></div>
+      <div class="opt-sub">深蓝色叠加，偏暗、专业感强</div>
+    </div>
+    <div class="info">
+      🎨 深蓝半透明覆盖（82%/70%/55%）<br>
+      ✅ 文字最清晰 &nbsp; ⚠️ 照片细节较少
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>方案 B：柔和系（温馨、亲近）</h3>
+    <div class="preview-box opt-b">
+      <div class="tag-sm">🏠 康养体验中心-线上平台</div>
+      <div class="opt-title">一个跌倒，<span style="color:#FCD34D">可能改变一切</span></div>
+      <div class="opt-sub">均匀暗化，偏暖色调、亲和力强</div>
+    </div>
+    <div class="info">
+      🎨 黑色均匀遮罩（60%/55%）<br>
+      ✅ 照片隐约可见 &nbsp; ⚠️ 文字略欠清晰
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>方案 C：保留蓝渐变（推荐）</h3>
+    <div class="preview-box opt-c">
+      <div class="tag-sm">🏠 康养体验中心-线上平台</div>
+      <div class="opt-title">一个跌倒，<span style="color:#FCD34D">可能改变一切</span></div>
+      <div class="opt-sub">蓝色渐变+照片，原风格过渡自然</div>
+    </div>
+    <div class="info">
+      🎨 蓝色渐变叠加照片<br>
+      ✅ 文字清晰 &nbsp; ✅ 原风格保留 &nbsp; ⭐ 推荐
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

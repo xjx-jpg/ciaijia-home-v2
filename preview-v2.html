@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>照片摆放方案 v2</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'PingFang SC','Microsoft YaHei',sans-serif; background: #0f172a; color: #ccc; padding-bottom: 60px; }
+h2 { text-align: center; padding: 30px 0 10px; color: #fff; font-size: 1.05rem; }
+
+/* ===== 方案1：Hero 右侧卡片 ===== */
+.p1-wrap {
+  max-width: 900px; margin: 24px auto; background: linear-gradient(135deg, #1e3a8a, #1d4ed8, #2563eb, #0ea5e9);
+  border-radius: 18px; padding: 40px; display: flex; align-items: center; gap: 40px;
+}
+.p1-text { flex: 1; color: #fff; }
+.p1-tag { display: inline-block; background: rgba(255,255,255,.15); padding: 4px 14px; border-radius: 20px; font-size: .75rem; margin-bottom: 14px; }
+.p1-text h1 { font-size: 1.8rem; font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
+.p1-text h1 span { color: #FCD34D; }
+.p1-text p { font-size: .9rem; opacity: .85; margin-bottom: 6px; }
+.p1-cta { display: inline-block; background: #fff; color: #1D4ED8; padding: 10px 22px; border-radius: 30px; font-size: .9rem; font-weight: 700; margin-top: 16px; text-decoration: none; }
+.p1-img { flex: 0 0 280px; }
+.p1-img img { width: 100%; border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,.35); border: 3px solid rgba(255,255,255,.25); }
+
+/* ===== 方案2：Hero下方独立展示区 ===== */
+.p2-hero { max-width: 900px; margin: 24px auto 0; background: linear-gradient(135deg, #1e3a8a, #1d4ed8, #2563eb, #0ea5e9); border-radius: 18px 18px 0 0; padding: 50px 40px; text-align: center; color: #fff; }
+.p2-tag { display: inline-block; background: rgba(255,255,255,.15); padding: 4px 14px; border-radius: 20px; font-size: .75rem; margin-bottom: 14px; }
+.p2-hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
+.p2-hero h1 span { color: #FCD34D; }
+.p2-hero p { font-size: .9rem; opacity: .85; }
+.p2-cta { display: inline-block; background: #fff; color: #1D4ED8; padding: 10px 22px; border-radius: 30px; font-size: .9rem; font-weight: 700; margin-top: 16px; text-decoration: none; }
+.p2-showcase {
+  max-width: 900px; margin: 0 auto 30px; background: #fff; border-radius: 0 0 18px 18px;
+  display: flex; align-items: center; gap: 32px; padding: 32px 40px;
+}
+.p2-showcase img { width: 260px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.1); }
+.p2-info h3 { font-size: 1.05rem; color: #1a1a2e; margin-bottom: 8px; }
+.p2-info p { font-size: .82rem; color: #666; line-height: 1.7; }
+.p2-info .badge-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.p2-info .tag-btn { background: #EFF6FF; color: #2563EB; padding: 5px 12px; border-radius: 16px; font-size: .75rem; font-weight: 600; }
+
+/* ===== 方案3：卡片列表中的一间 ===== */
+.p3-wrap { max-width: 900px; margin: 24px auto; }
+.p3-hero { background: linear-gradient(135deg, #1e3a8a, #1d4ed8, #2563eb, #0ea5e9); border-radius: 18px; padding: 50px 40px; text-align: center; color: #fff; margin-bottom: 24px; }
+.p3-tag { display: inline-block; background: rgba(255,255,255,.15); padding: 4px 14px; border-radius: 20px; font-size: .75rem; margin-bottom: 14px; }
+.p3-hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
+.p3-hero h1 span { color: #FCD34D; }
+.p3-hero p { font-size: .9rem; opacity: .85; }
+.p3-cta { display: inline-block; background: #fff; color: #1D4ED8; padding: 10px 22px; border-radius: 30px; font-size: .9rem; font-weight: 700; margin-top: 16px; text-decoration: none; }
+.p3-cards { display: flex; gap: 16px; flex-wrap: wrap; }
+.p3-card {
+  flex: 1; min-width: 200px; background: #1e293b; border-radius: 14px;
+  overflow: hidden; border: 1px solid #334155;
+}
+.p3-card img { width: 100%; height: 160px; object-fit: cover; }
+.p3-card-body { padding: 16px; }
+.p3-card-body h4 { color: #fff; font-size: .9rem; margin-bottom: 4px; }
+.p3-card-body p { font-size: .75rem; color: #94a3b8; }
+.p3-card.active { border: 2px solid #3B82F6; }
+.p3-card.active .p3-card-body { background: rgba(59,130,246,.1); }
+.p3-card.active .p3-card-body h4 { color: #60A5FA; }
+
+/* ===== 方案4：放在行动能力评估页面当插图 ===== */
+.p4-wrap { max-width: 900px; margin: 24px auto; }
+.p4-nav { background: rgba(255,255,255,.95); border-radius: 14px 14px 0 0; padding: 12px 24px; display: flex; gap: 20px; font-size: .82rem; }
+.p4-nav span { color: #94a3b8; }
+.p4-nav span.active { color: #2563EB; font-weight: 700; }
+.p4-page {
+  background: #fff; border-radius: 0 0 14px 14px; padding: 36px 40px;
+  display: flex; gap: 36px; align-items: flex-start;
+}
+.p4-main { flex: 1; }
+.p4-page h3 { color: #1a1a2e; font-size: 1.2rem; margin-bottom: 6px; }
+.p4-page .subtitle { font-size: .82rem; color: #888; margin-bottom: 20px; }
+.p4-q { background: #F8FAFC; border-radius: 10px; padding: 16px 18px; margin-bottom: 10px; border-left: 3px solid #2563EB; }
+.p4-q .q-num { font-size: .72rem; color: #2563EB; font-weight: 700; }
+.p4-q .q-title { font-size: .88rem; color: #1a1a2e; margin: 4px 0 10px; font-weight: 600; }
+.p4-q .q-opts { display: flex; gap: 8px; flex-wrap: wrap; }
+.p4-q .opt { padding: 6px 16px; border-radius: 20px; font-size: .8rem; border: 1px solid #D1D5DB; color: #374151; background: #fff; cursor: pointer; }
+.p4-q .opt:hover { border-color: #2563EB; color: #2563EB; background: #EFF6FF; }
+.p4-side { flex: 0 0 280px; }
+.p4-side img { width: 100%; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.08); margin-bottom: 12px; }
+.p4-side .side-label { font-size: .72rem; color: #999; text-align: center; }
+.p4-side .product-tip { background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-size: .75rem; color: #92400E; }
+
+/* ── 通用标注 ── */
+.badge-rec {
+  display: inline-block; background: linear-gradient(135deg, #F59E0B, #EF4444);
+  color: #fff; font-size: .65rem; padding: 2px 7px; border-radius: 10px; margin-left: 6px;
+}
+</style>
+</head>
+<body>
+
+<h2>方案 1️⃣ — Hero 文字在左，照片在右（左右并排）</h2>
+<div class="p1-wrap">
+  <div class="p1-text">
+    <div class="p1-tag">🏠 康养体验中心-线上平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%</p>
+    <p>近半数与家居环境隐患相关</p>
+    <a href="#" class="p1-cta">🔍 开始自查 →</a>
+  </div>
+  <div class="p1-img">
+    <img src="D:/W020260305394898372624.jpg" alt="">
+  </div>
+</div>
+
+<h2>方案 2️⃣ — Hero 保持干净，下方加"体验中心"展示区（推荐 ⭐）</h2>
+<div class="p2-hero">
+  <div class="p2-tag">🏠 康养体验中心-线上平台</div>
+  <h1>一个跌倒，<span>可能改变一切</span></h1>
+  <p>我国65岁以上老年人跌倒发生率高达30%，近半数与家居环境隐患相关</p>
+  <a href="#" class="p2-cta">🔍 开始自查 →</a>
+</div>
+<div class="p2-showcase">
+  <img src="D:/W020260305394898372624.jpg" alt="体验中心实拍">
+  <div class="p2-info">
+    <h3>🏢 线下康养体验中心 <span class="badge-rec">实拍</span></h3>
+    <p>慈爱嘉康养体验中心（北京），展示适老化改造实景。<br>包括安全扶手、智能护理床、无障碍通道等真实设施，欢迎预约参观。</p>
+    <div class="badge-row">
+      <span class="tag-btn">🦽 助行器体验</span>
+      <span class="tag-btn">🛏️ 护理床展示</span>
+      <span class="tag-btn">🛁 浴室改造</span>
+      <span class="tag-btn">📞 预约参观</span>
+    </div>
+  </div>
+</div>
+
+<h2>方案 3️⃣ — 照片作为"服务卡片"之一（多图展示）</h2>
+<div class="p3-wrap">
+  <div class="p3-hero">
+    <div class="p3-tag">🏠 康养体验中心-线上平台</div>
+    <h1>一个跌倒，<span>可能改变一切</span></h1>
+    <p>我国65岁以上老年人跌倒发生率高达30%，近半数与家居环境隐患相关</p>
+    <a href="#" class="p3-cta">🔍 开始自查 →</a>
+  </div>
+  <div class="p3-cards">
+    <div class="p3-card">
+      <div style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;">🏠</div>
+      <div class="p3-card-body"><h4>居家安全自查</h4><p>6大空间隐患检测</p></div>
+    </div>
+    <div class="p3-card active">
+      <img src="D:/W020260305394898372624.jpg" alt="">
+      <div class="p3-card-body"><h4>线下体验中心 ⭐</h4><p>实景参观，亲身体验</p></div>
+    </div>
+    <div class="p3-card">
+      <div style="background:linear-gradient(135deg,#FEF3C7,#FDE68A);height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;">📋</div>
+      <div class="p3-card-body"><h4>行动能力评估</h4><p>出行风险早知道</p></div>
+    </div>
+    <div class="p3-card">
+      <div style="background:linear-gradient(135deg,#FCE7F3,#F9A8D4);height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;">📞</div>
+      <div class="p3-card-body"><h4>预约上门服务</h4><p>专业团队到家评估</p></div>
+    </div>
+  </div>
+</div>
+
+<h2>方案 4️⃣ — 放到行动能力评估页里（边答题边看展）</h2>
+<div class="p4-wrap">
+  <div class="p4-nav">
+    <span>🏠 首页</span> →
+    <span class="active">🚶 行动能力评估</span> →
+    <span>🔍 互动自查</span> →
+    <span>📋 改造方案</span>
+  </div>
+  <div class="p4-page">
+    <div class="p4-main">
+      <h3>🚶 行动能力评估</h3>
+      <p class="subtitle">参考《老年人能力评估规范》GB/T 42195-2022，评估出行风险</p>
+      <div class="p4-q">
+        <div class="q-num">问题 1 / 5</div>
+        <div class="q-title">长者能否独立平地行走？</div>
+        <div class="q-opts">
+          <span class="opt">✅ 可以独立行走</span>
+          <span class="opt">🦯 需要拐杖辅助</span>
+          <span class="opt">🦽 需要轮椅</span>
+          <span class="opt">🛏️ 卧床/不能行走</span>
+        </div>
+      </div>
+      <div class="p4-q">
+        <div class="q-num">问题 2 / 5</div>
+        <div class="q-title">长者能否独立上下楼梯？</div>
+        <div class="q-opts">
+          <span class="opt">✅ 可以独立完成</span>
+          <span class="opt">🦯 需扶扶手/拐杖</span>
+          <span class="opt">🙋 需要他人搀扶</span>
+          <span class="opt">❌ 完全不能</span>
+        </div>
+      </div>
+    </div>
+    <div class="p4-side">
+      <img src="D:/W020260305394898372624.jpg" alt="">
+      <div class="side-label">📍 慈爱嘉康养体验中心 · 实景</div>
+      <div class="product-tip">
+        💡 <b>体验店产品</b><br>
+        助行器、轮椅、拐杖、护理床、安全扶手等适老化设备，欢迎到店体验。
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

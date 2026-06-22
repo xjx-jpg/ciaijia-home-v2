@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>慈爱嘉居家康养体验中心 — 书页式预览</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #fff; color: #1E3A5F; }
+
+  /* 固定遮罩模拟器 - 说明文字 */
+  .sim-label {
+    position: fixed; top: 12px; left: 50%; transform: translateX(-50%); z-index: 999;
+    background: #1E3A5F; color: #FFD700; padding: 6px 18px; border-radius: 20px;
+    font-size: .75rem; font-weight: 700;
+  }
+
+  /* ===== 第一页：Hero 全屏 ===== */
+  .page1 {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    background: linear-gradient(180deg, #DBEAFE 0%, #EFF6FF 50%, #FFFFFF 100%);
+    position: relative; overflow: hidden; padding: 40px 24px;
+  }
+  .page1::before {
+    content: ''; position: absolute; top: -120px; right: -120px;
+    width: 360px; height: 360px; background: rgba(37,99,235,.04); border-radius: 50%;
+  }
+  .page1::after {
+    content: ''; position: absolute; bottom: -60px; left: 8%;
+    width: 240px; height: 240px; background: rgba(14,165,233,.03); border-radius: 50%;
+  }
+  .page1-inner { text-align: center; position: relative; z-index: 1; max-width: 620px; }
+  .hero-badge {
+    display: inline-block; background: #2563EB; color: #fff;
+    padding: 12px 30px; border-radius: 36px;
+    font-size: 1.1rem; font-weight: 800;
+    box-shadow: 0 6px 22px rgba(37,99,235,.3);
+    margin-bottom: 32px;
+  }
+  .hero-h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; margin-bottom: 16px; color: #1E3A5F; }
+  .hero-h1 span { color: #2563EB; }
+  .hero-sub { font-size: 1rem; color: #6B7280; margin-bottom: 6px; }
+  .hero-sub2 { font-size: .9rem; color: #9CA3AF; margin-bottom: 48px; }
+
+  /* CTA button */
+  .hero-start-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    color: #fff; padding: 16px 40px; border-radius: 50px;
+    font-size: 1.1rem; font-weight: 700; text-decoration: none;
+    cursor: pointer; border: none;
+    box-shadow: 0 8px 28px rgba(37,99,235,.35);
+    transition: all .3s;
+    animation: btnFloat 2s ease-in-out infinite;
+  }
+  .hero-start-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(37,99,235,.45); }
+  @keyframes btnFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* 向下滚动提示 */
+  .scroll-hint {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: #9CA3AF; font-size: .78rem; animation: fadeHint 2s ease-in-out infinite;
+  }
+  .scroll-arrow { font-size: 1.2rem; }
+  @keyframes fadeHint { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+  /* ===== 分隔线 ===== */
+  .divider {
+    text-align: center; padding: 32px 0; background: #fff; color: #9CA3AF;
+    font-size: .82rem; letter-spacing: .1em;
+  }
+  .divider b { color: #2563EB; }
+
+  /* ===== 第二页：双卡片 + 展示区 ===== */
+  .page2 {
+    background: #fff; padding: 0 24px 40px; display: block;
+  }
+  .dual-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; margin: 0 auto; }
+  .dual-card {
+    background: #fff; border-radius: 16px; padding: 32px 26px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.05); border: 1px solid #E5E7EB;
+    cursor: pointer; text-decoration: none; color: inherit; transition: all .3s;
+  }
+  .dual-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.08); }
+  .dual-card.safety { border-top: 4px solid #2563EB; }
+  .dual-card.mobility { border-top: 4px solid #16A34A; }
+  .dc-icon { font-size: 2rem; margin-bottom: 10px; }
+  .dc-title { font-size: 1.1rem; font-weight: 800; color: #111827; margin-bottom: 6px; }
+  .dc-quote { font-size: .85rem; color: #6B7280; font-style: italic; margin-bottom: 10px; padding-left: 12px; border-left: 3px solid #E5E7EB; }
+  .dc-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .dc-tag { background: #F3F4F6; color: #374151; padding: 3px 10px; border-radius: 12px; font-size: .72rem; font-weight: 600; }
+  .dc-stats { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+  .dc-stat { background: #EFF6FF; border-radius: 8px; padding: 10px 4px; text-align: center; }
+  .dc-stat-num { font-size: 1.05rem; font-weight: 800; color: #2563EB; display: block; }
+  .dc-stat-label { font-size: .6rem; color: #6B7280; line-height: 1.3; }
+  .dc-arrow { font-weight: 700; font-size: .88rem; display: inline-flex; align-items: center; gap: 4px; }
+  .dc-arrow.blue { color: #2563EB; }
+  .dc-arrow.green { color: #16A34A; }
+
+  .showcase { max-width: 900px; margin: 28px auto 0; }
+  .showcase-inner {
+    background: #fff; border-radius: 16px; padding: 22px 26px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.04); border: 1px solid #E5E7EB;
+    display: flex; align-items: center; gap: 22px;
+    cursor: pointer; transition: all .3s;
+  }
+  .showcase-inner:hover { box-shadow: 0 6px 22px rgba(0,0,0,.08); border-color: #2563EB; transform: translateY(-2px); }
+  .showcase-photo {
+    width: 220px; height: 150px; border-radius: 10px;
+    background: #E5E7EB; display: flex; align-items: center; justify-content: center;
+    color: #9CA3AF; font-size: .8rem; flex-shrink: 0;
+  }
+  .showcase-info h4 { font-size: .92rem; color: #111827; margin-bottom: 4px; }
+  .showcase-info p { font-size: .78rem; color: #6B7280; line-height: 1.6; }
+  .showcase-addr { margin-top: 4px; font-size: .78rem; color: #2563EB; font-weight: 600; border-bottom: 1px dashed #2563EB; display: inline-block; }
+
+  /* ===== 第三页：评估内容区示意 ===== */
+  .page3 { background: #F9FAFB; padding: 40px 24px 60px; }
+  .page3-inner { max-width: 900px; margin: 0 auto; }
+  .page3 h3 { font-size: 1.15rem; color: #111827; margin-bottom: 16px; }
+  .page3 .mock { background: #fff; border-radius: 12px; padding: 28px; box-shadow: 0 1px 6px rgba(0,0,0,.04); color: #9CA3AF; font-size: .88rem; text-align: center; }
+
+  @media (max-width: 640px) {
+    .dual-cards { grid-template-columns: 1fr; }
+    .dc-stats { grid-template-columns: 1fr 1fr; }
+    .showcase-inner { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="sim-label">🔍 模拟预览 · 三页分别展示</div>
+
+<!-- 第1页：封面对（占满全屏） -->
+<section class="page1">
+  <div class="page1-inner">
+    <div class="hero-badge">🏠 慈爱嘉居家康养体验中心</div>
+    <h1 class="hero-h1">在这里，<span>我们一切有备</span></h1>
+    <p class="hero-sub">居家环境安全 + 出行行动能力，双重评估，一站式守护。</p>
+    <p class="hero-sub2">从家里的每个角落到出门的每一步，提前发现风险，有备无患。</p>
+    <button class="hero-start-btn" onclick="alert('实际使用时，点击这里会展开下方内容')">
+      开始评估 <span style="font-size:1.2rem;">→</span>
+    </button>
+  </div>
+  <div class="scroll-hint">
+    <span>或向下滚动</span>
+    <span class="scroll-arrow">⌄</span>
+  </div>
+</section>
+
+<!-- 分隔标识 -->
+<div class="divider">───── <b>点击「开始评估」后展开</b> ─────</div>
+
+<!-- 第2页：双卡片 + 展示区（点击后才出现） -->
+<section class="page2">
+  <div class="dual-cards">
+    <!-- 居家安全 -->
+    <a class="dual-card safety" href="javascript:void(0)" onclick="alert('跳转到互动自查页面')">
+      <div class="dc-icon">🏠</div>
+      <div class="dc-title">居家安全评估</div>
+      <div class="dc-quote">"一个跌倒，可能改变一切。"</div>
+      <div class="dc-stats">
+        <div class="dc-stat"><span class="dc-stat-num">30%</span><span class="dc-stat-label">65岁以上年跌倒率</span></div>
+        <div class="dc-stat"><span class="dc-stat-num">50%</span><span class="dc-stat-label">与家居环境相关</span></div>
+        <div class="dc-stat"><span class="dc-stat-num">7类</span><span class="dc-stat-label">民政部改造标准</span></div>
+        <div class="dc-stat"><span class="dc-stat-num">30项</span><span class="dc-stat-label">官方推荐清单</span></div>
+      </div>
+      <div class="dc-tags">
+        <span class="dc-tag">🤖 AI分析居家环境</span>
+        <span class="dc-tag">📋 问卷自评</span>
+        <span class="dc-tag">📄 生成报告</span>
+        <span class="dc-tag">🏚️ 6大空间</span>
+      </div>
+      <div class="dc-arrow blue">开始评估 →</div>
+    </a>
+    <!-- 行动能力 -->
+    <a class="dual-card mobility" href="javascript:void(0)" onclick="alert('跳转到行动能力评估页面')">
+      <div class="dc-icon">🚶</div>
+      <div class="dc-title">行动能力评估</div>
+      <div class="dc-quote">"走出家门的路，也应该安心抵达。"</div>
+      <div class="dc-tags">
+        <span class="dc-tag">🇨🇳 国家标准</span>
+        <span class="dc-tag">🦯 设备推荐</span>
+        <span class="dc-tag">📊 能力分级</span>
+        <span class="dc-tag">5题评估</span>
+      </div>
+      <div class="dc-arrow green">开始评估 →</div>
+    </a>
+  </div>
+
+  <!-- 展示区 -->
+  <div class="showcase">
+    <div class="showcase-inner" onclick="alert('跳转微盟商城')">
+      <div class="showcase-photo">📷 康养体验中心实景照片</div>
+      <div class="showcase-info">
+        <h4>🏢 慈爱嘉居家康养体验中心 · 实景展厅</h4>
+        <p>实景展示适老化改造全场景方案，含安全扶手、智能护理床、无障碍通道等，助行器、轮椅、拐杖等设备可现场体验。</p>
+        <span class="showcase-addr" onclick="event.stopPropagation();alert('跳转高德导航')">📍 北京市东城区东环广场B座地下一层</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">───── <b>评估内容区域</b> ─────</div>
+
+<!-- 第3页：评估内容（示意） -->
+<section class="page3">
+  <div class="page3-inner">
+    <h3>📋 行动能力评估 / 互动自查</h3>
+    <div class="mock">（评估问卷、拍照分析、报告生成等原有功能在此展开）</div>
+  </div>
+</section>
+
+</body>
+</html>
