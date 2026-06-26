@@ -2482,6 +2482,14 @@ async function analyzePhotoWithAI(imageDataUrl, spaceId) {
     '- level含义：high=高风险（可能导致跌倒或重伤），mid=中风险（存在不便或隐患），low=低风险（建议优化）\n' +
     '- 必须结合老人信息给出个性化建议，不能给出通用建议';
 
+  var _maxRetries = 2;
+  var _lastError = null;
+
+  for (var _retryAttempt = 1; _retryAttempt <= _maxRetries; _retryAttempt++) {
+    if (_retryAttempt > 1) {
+      analysis.innerHTML = '<div style="text-align:center;padding:40px"><div class="ai-loading-dot"></div><p style="color:#666;margin-top:15px">AI 响应较慢，正在重试（第 ' + _retryAttempt + ' 次）...</p></div>';
+      await new Promise(function(r) { setTimeout(r, 2000); });
+    }
   try {
     var response = await fetch(endpoint, {
       method: 'POST',
@@ -2528,8 +2536,15 @@ async function analyzePhotoWithAI(imageDataUrl, spaceId) {
 
     var result = JSON.parse(jsonStr);
     displayAIResults(result, spaceId);
+      break; // 成功，跳出重试循环
+      return;
 
   } catch (error) {
+    _lastError = error;
+    if (_retryAttempt < _maxRetries) {
+      continue; // 还有重试机会，继续循环
+    }
+    // 所有重试都失败，显示错误
     console.error('AI analysis error:', error);
     var errMsg = (error.message || '未知错误').substring(0, 300);
     var isBalanceError = /balance|余额|insufficient|quota|credit|无可用金额|402/i.test(errMsg);
@@ -2552,6 +2567,7 @@ async function analyzePhotoWithAI(imageDataUrl, spaceId) {
       </div>
     `;
     if (actions) actions.style.display = 'flex';
+  }
   }
 }
 
@@ -2727,7 +2743,7 @@ function retakePhoto() {
 
 /* ===== AI SETTINGS ===== */
 var BUILTIN_API_KEY = ''; // 密钥已移至 Netlify Functions 环境变量，前端不再暴露
-var BUILTIN_API_ENDPOINT = 'https://frosty-mountain-953b.2305658594.workers.dev';
+var BUILTIN_API_ENDPOINT = '/api/ai-proxy';
 var BUILTIN_API_MODEL = 'Qwen/Qwen3-VL-32B-Instruct';
 
 function getApiKey() {
