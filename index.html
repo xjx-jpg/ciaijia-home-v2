@@ -2407,7 +2407,7 @@ function handlePhotoUpload(event) {
     previewImg.style.display = 'block';
 
     var apiKey = getApiKey();
-    var isProxyMode = BUILTIN_API_ENDPOINT && BUILTIN_API_ENDPOINT.startsWith('/');
+    var isProxyMode = BUILTIN_API_ENDPOINT && !BUILTIN_API_KEY;
     if (!apiKey && !isProxyMode) {
       analysis.innerHTML = `
         <div class="ai-error">
